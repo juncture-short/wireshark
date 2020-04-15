@@ -755,7 +755,7 @@ static const value_string acn_protocol_id_vals[] = {
   { ACN_PROTOCOL_ID_DMP,    "DMP Protocol" },
   { ACN_PROTOCOL_ID_DMX,    "DMX Protocol" },
   { ACN_PROTOCOL_ID_DMX_2,  "Ratified DMX Protocol" },
-  { ACN_PROTOCOL_ID_DMX_3, "Secure DMX Protocol" },
+  { ACN_PROTOCOL_ID_DMX_3, "Pathway Connectivity Secure DMX Protocol" },
   { ACN_PROTOCOL_ID_RPT,    "RDM Packet Transport Protocol" },
   { ACN_PROTOCOL_ID_BROKER, "Broker Protocol" },
   { ACN_PROTOCOL_ID_LLRP,   "Low Level Recovery Protocol" },

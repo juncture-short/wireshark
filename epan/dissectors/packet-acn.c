@@ -3255,6 +3255,7 @@ is_acn(tvbuff_t *tvb)
   if (is_acn_or_rdmnet_over_udp(tvb, &protocol_id)) {
     if ((protocol_id == ACN_PROTOCOL_ID_DMX) ||
         (protocol_id == ACN_PROTOCOL_ID_DMX_2) ||
+        (protocol_id == ACN_PROTOCOL_ID_DMX_3) ||
         (protocol_id == ACN_PROTOCOL_ID_SDT))
       return TRUE;
   }
@@ -5664,7 +5665,7 @@ dissect_acn_dmx_base_pdu(guint32 protocol_id, tvbuff_t *tvb, packet_info *pinfo,
       proto_tree_add_item(pdu_tree, hf_acn_dmx_sequence_number, tvb, data_offset, 1, ENC_BIG_ENDIAN);
       data_offset += 1;
 
-      if (protocol_id == ACN_PROTOCOL_ID_DMX_2 || protocol_id==ACN_PROTOCOL_ID_DMX_3) {
+      if (protocol_id == ACN_PROTOCOL_ID_DMX_2 || protocol_id == ACN_PROTOCOL_ID_DMX_3) {
         option_flags = tvb_get_guint8(tvb, data_offset);
         pi = proto_tree_add_uint(pdu_tree, hf_acn_dmx_2_options, tvb, data_offset, 1, option_flags);
         flag_tree = proto_item_add_subtree(pi, ett_acn_dmx_2_options);
@@ -7039,6 +7040,7 @@ dissect_acn_root_pdu(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree, int of
   switch (protocol_id) {
     case ACN_PROTOCOL_ID_DMX:
     case ACN_PROTOCOL_ID_DMX_2:
+    case ACN_PROTOCOL_ID_DMX_3:
       if (global_acn_dmx_enable) {
         end_offset = dissect_acn_root_pdu_header(tvb, pinfo, pdu_tree, ti, ": Root DMX", &offset, pdu_flags, pdu_length, &data_offset, &data_length, last_pdu_offsets, 1, &pdu_flvh_length, 1);
 
